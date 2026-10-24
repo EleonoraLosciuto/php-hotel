@@ -65,23 +65,42 @@ $hotels = [
 <!-- Stampare una tabella con tutti gli hotel e i relativi dati disponibili. -->
 
 <table class="table table-striped table-hover">
+  <thead>
     <?php
      
     foreach ($hotels[0] as $key => $value) {
             echo "<th scope='col' class='text-uppercase'>$key</th>";
         }
-    
-    foreach ($hotels as $hotel) {
-        echo "<tr>";
-
-        foreach ($hotel as $key => $value) {
-            echo "<td>$value</td>";
-        }
-
-        echo "</tr>";
-    };
 
     ?>
+  </thead>
+  <tbody>
+
+      <?php
+
+       foreach ($hotels as $hotel) {
+
+      ?>
+
+         <tr>
+          <td><?php echo $hotel['name'] ?></td>
+          <td><?php echo $hotel['description'] ?></td>
+          <td><?php 
+          echo $hotel['parking'] ?
+          "vero"
+          : "falso";
+          ?>
+          </td>
+          <td><?php echo $hotel['vote']?></td>
+          <td><?php echo $hotel['distance_to_center']?></td>
+        </tr>
+
+       <?php
+
+       }
+
+      ?>
+  </tbody>
 </table>
     
 </body>
