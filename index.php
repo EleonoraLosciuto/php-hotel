@@ -57,10 +57,24 @@ $hotels = [
 <body>
 
 <h1>I Nostri Hotel </h1>
+<hr class="mt-1 mb-5">
 
 <!-- Aggiungere un form ad inizio pagina che tramite una richiesta GET permetta di filtrare gli hotel che hanno un parcheggio. -->
+<!-- 
+Aggiungere un secondo campo al form che permetta di filtrare gli hotel per voto (es. inserisco 3 ed ottengo tutti gli hotel che hanno un voto di tre stelle o superiore) -->
 
 <h3>Filtra gli hotel desiderati</h3>
+<form method="GET">
+    <input type="checkbox" name="parking" id="parking">
+    <label for="parking">Parcheggio</label>
+    <br>
+    <label for="vote">Voto minimo:</label>
+    <input type="number" name="vote" id="vote">
+
+  <button type="submit">Filtra</button>
+</form>
+
+<hr class="mt-1 mb-5">
 
 <!-- Stampare una tabella con tutti gli hotel e i relativi dati disponibili. -->
 
