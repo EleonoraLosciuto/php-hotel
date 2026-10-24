@@ -53,7 +53,7 @@ $vote_filter_active = false;
 
 if (isset($_GET['vote']) && ($_GET['vote'] > 0) && ($_GET['vote'] <= 5)) {
   $vote_filter_active = true;
-  $vote_filter = $_GET['vote']; // I set vote_filter varible to filter results
+  $vote_filter = (int)$_GET['vote']; // I set vote_filter varible to filter results
 }
 
 ?>
@@ -79,15 +79,20 @@ if (isset($_GET['vote']) && ($_GET['vote'] > 0) && ($_GET['vote'] <= 5)) {
 <!-- 
 Aggiungere un secondo campo al form che permetta di filtrare gli hotel per voto (es. inserisco 3 ed ottengo tutti gli hotel che hanno un voto di tre stelle o superiore) -->
 
-<h3>Filtra gli hotel desiderati</h3>
+<h3 class="mb-5">Filtra gli hotel desiderati</h3>
 <form method="GET" action="">
-    <input type="checkbox" name="parking" id="parking">
-    <label for="parking">Parcheggio</label>
-    <br>
-    <label for="vote">Voto minimo:</label>
-    <input type="number" name="vote" id="vote" min=1 max=5>
+    <div class="d-flex">
+      <div class="form-control">
+        <input type="checkbox" name="parking" id="parking">
+        <label for="parking" class="ml-5">Parcheggio</label>
+      </div>
+      <div class="form-control">
+        <label for="vote">Voto minimo:</label>
+        <input type="number" name="vote" id="vote" min="1" max="5">
+      </div>
+    </div>
 
-  <button type="submit">Filtra</button>
+  <button type="submit" class="mt-5">Filtra</button>
 </form>
 
 <hr class="mt-1 mb-5">
