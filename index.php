@@ -40,9 +40,25 @@ $hotels = [
 
 ];
 
+// variable parking_requested to skip iterations in loop
+$parking_requested = false;
 
+if (isset($_GET['parking']) && $_GET['parking'] == 'on')
+  {
+    $parking_requested = true;
+  }
+
+  // variable vote_filter_active to skip iterations in loop
+$vote_filter_active = false;
+
+if (isset($_GET['vote']) && ($_GET['vote'] > 0) && ($_GET['vote'] <= 5)) {
+  $vote_filter_active = true;
+  $vote_filter = $_GET['vote']; // I set vote_filter varible to filter results
+}
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,12 +80,12 @@ $hotels = [
 Aggiungere un secondo campo al form che permetta di filtrare gli hotel per voto (es. inserisco 3 ed ottengo tutti gli hotel che hanno un voto di tre stelle o superiore) -->
 
 <h3>Filtra gli hotel desiderati</h3>
-<form method="GET">
+<form method="GET" action="">
     <input type="checkbox" name="parking" id="parking">
     <label for="parking">Parcheggio</label>
     <br>
     <label for="vote">Voto minimo:</label>
-    <input type="number" name="vote" id="vote">
+    <input type="number" name="vote" id="vote" min=1 max=5>
 
   <button type="submit">Filtra</button>
 </form>
@@ -93,6 +109,21 @@ Aggiungere un secondo campo al form che permetta di filtrare gli hotel per voto 
       <?php
 
        foreach ($hotels as $hotel) {
+
+       if ($parking_requested) {
+        if(!$hotel['parking']) {
+          continue;
+        };
+       }
+
+
+       if ($vote_filter_active) {
+        if($hotel['vote'] < $vote_filter){
+          continue;
+        };
+       }
+
+
 
       ?>
 
